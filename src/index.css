@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased;
+    /* Add subtle grid background */
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Neon glow effect for primary elements */
+  .glow-primary {
+    box-shadow: 0 0 15px rgba(252, 213, 53, 0.2);
+  }
+  
+  .glow-primary-strong {
+    box-shadow: 0 0 25px rgba(252, 213, 53, 0.4);
+  }
+
+  /* Neon glow effect for success elements */
+  .glow-success {
+    box-shadow: 0 0 15px rgba(0, 200, 81, 0.2);
+  }
+  
+  .glow-success-strong {
+    box-shadow: 0 0 25px rgba(0, 200, 81, 0.4);
+  }
+  
+  /* Smooth card appearance */
+  .glass-card {
+    @apply bg-surface border border-white/5 rounded-2xl shadow-lg;
+  }
+}
