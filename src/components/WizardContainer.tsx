@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ProgressBar } from './ProgressBar';
 import { Step1Preparation } from './steps/Step1';
@@ -11,6 +11,10 @@ const TOTAL_STEPS = 5; // Referência da sua imagem (Etapa 1 de 04)
 
 export function WizardContainer() {
   const [currentStep, setCurrentStep] = useState(1);
+
+  useEffect(() => {
+    document.title = `Cinquenta Fácil | Passo ${currentStep}/${TOTAL_STEPS}`;
+  }, [currentStep]);
 
   const handleNext = () => {
     if (currentStep < TOTAL_STEPS) {
