@@ -124,7 +124,7 @@ export function Step1Preparation({ onNext }: Step1PreparationProps) {
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-primary/10">
             <Clock className="w-3.5 h-3.5 text-primary" />
             <span className="text-[11px] font-medium text-primary/90">
-              É rápido! Leva só <strong className="font-bold text-primary">5 a 10 minutos</strong>
+              É rápido! Leva de <strong className="font-bold text-primary">5 a 10 minutos</strong>
             </span>
           </div>
         </div>
