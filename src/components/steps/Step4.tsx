@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import { ExternalLink, ShieldCheck } from 'lucide-react';
 import { useConfig } from '../../hooks/useConfig';
 
@@ -21,7 +22,7 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
     >
       <div className="flex-1">
         {/* Cabeçalho */}
-        <div className="mb-4">
+        <div className="mb-4 short:mb-3">
           <h1 className="text-xl font-bold tracking-tight mb-1">
             Movimentando a Conta
           </h1>
@@ -31,9 +32,9 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
         </div>
 
         {/* Passos instrucionais */}
-        <div className="rounded-xl border border-white/5 overflow-hidden mb-4">
+        <div className="rounded-xl border border-white/5 overflow-hidden mb-4 xshort:mb-2">
           {/* Passo 1 */}
-          <div className="flex items-center gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               1
             </span>
@@ -45,7 +46,7 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
           </div>
 
           {/* Passo 2 */}
-          <div className="flex items-center gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               2
             </span>
@@ -57,7 +58,7 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
           </div>
 
           {/* Passo 3 */}
-          <div className="flex items-center gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               3
             </span>
@@ -69,7 +70,7 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
           </div>
 
           {/* Passo 4 */}
-          <div className="flex items-start gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-start gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold mt-0.5">
               4
             </span>
@@ -84,7 +85,7 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
           </div>
 
           {/* Passo 5 */}
-          <div className="flex flex-col gap-1 px-4 py-3.5 bg-surface">
+          <div className="flex flex-col gap-1 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface">
             <div className="flex items-center gap-3">
               <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary">
                 <ShieldCheck className="w-3.5 h-3.5" />
@@ -105,7 +106,7 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
           href={config.deposit_link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary mb-4"
+          className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary mb-4 short:mb-3 xshort:mb-2"
         >
           <ExternalLink className="w-4 h-4" />
           Movimentar a conta
@@ -114,58 +115,61 @@ export function Step4Deposit({ onNext }: Step4DepositProps) {
       </div>
 
       {/* Botão de avanço (agora abre o modal) */}
-      <div className="pt-4 pb-2">
+      <div className="pt-4 short:pt-2 pb-2">
         <button
           id="step4-next-btn"
           onClick={() => setShowModal(true)}
-          className="w-full font-bold text-base py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-[0.98] cursor-pointer"
+          className="w-full font-bold text-base py-3.5 rounded-xl border border-white flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-[0.98] cursor-pointer"
         >
           Falta só um passo
         </button>
       </div>
 
       {/* Modal de Confirmação */}
-      <AnimatePresence>
-        {showModal && (
-          <div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-black/60 backdrop-blur-sm"
-            onClick={() => setShowModal(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              className="w-full max-w-sm bg-background rounded-2xl p-6 shadow-2xl relative"
-              onClick={(e) => e.stopPropagation()}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {showModal && (
+            <div
+              className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowModal(false)}
             >
-              <h3 className="text-lg font-bold text-white mb-2">Você realizou o depósito na conta?</h3>
-              <p className="text-sm text-text-muted mb-6 leading-relaxed">
-                Prossiga somente após concluir essa etapa, erros aqui comprometem o recebimento dos R$ 50.
-              </p>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="w-full max-w-sm bg-background rounded-2xl p-6 shadow-2xl relative"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <h3 className="text-lg font-bold text-white mb-2">Você realizou o depósito na conta?</h3>
+                <p className="text-sm text-text-muted mb-6 leading-relaxed">
+                  Prossiga somente após concluir essa etapa, erros aqui comprometem o recebimento dos R$ 50.
+                </p>
 
-              <div className="flex flex-col gap-3">
-                <button
-                  onClick={() => {
-                    setShowModal(false);
-                    onNext();
-                  }}
-                  className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary"
-                >
-                  Já depositei
-                </button>
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={() => {
+                      setShowModal(false);
+                      onNext();
+                    }}
+                    className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary"
+                  >
+                    Já depositei
+                  </button>
 
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="w-full py-3.5 rounded-xl bg-surface border border-white/5 hover:border-white/10 hover:bg-white/5 text-text font-medium text-sm transition-all active:scale-[0.98]"
-                >
-                  Estou fazendo agora
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="w-full py-3.5 rounded-xl bg-surface border border-white/5 hover:border-white/10 hover:bg-white/5 text-text font-medium text-sm transition-all active:scale-[0.98]"
+                  >
+                    Estou fazendo agora
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </motion.div>
   );
 }

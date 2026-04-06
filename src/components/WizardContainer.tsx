@@ -29,7 +29,7 @@ export function WizardContainer() {
 
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-xl mx-auto px-5 py-4 flex flex-col z-10 relative">
+      <main className="flex-1 w-full max-w-xl mx-auto px-5 py-4 short:py-3 xshort:py-2 flex flex-col z-10 relative">
         <div className="w-full flex flex-col flex-1">
           <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} onBack={handleBack} />
 

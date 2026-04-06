@@ -32,5 +32,13 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    // Variante 'short' para telas com altura <= 700px
+    // Variante 'xshort' para telas com altura <= 680px (iPhone SE 667px)
+    function({ addVariant }) {
+      addVariant('short', '@media (max-height: 700px)');
+      addVariant('xshort', '@media (max-height: 680px)');
+    },
+  ],
 }
+

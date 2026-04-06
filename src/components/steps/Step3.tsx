@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import { ExternalLink, ScanFace, Camera } from 'lucide-react';
 import { useConfig } from '../../hooks/useConfig';
 
@@ -21,7 +22,7 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
     >
       <div className="flex-1">
         {/* Cabeçalho */}
-        <div className="mb-5">
+        <div className="mb-5 short:mb-3">
           <h1 className="text-xl font-bold tracking-tight mb-1">
             Verificando a Conta
           </h1>
@@ -31,9 +32,9 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
         </div>
 
         {/* Passos instrucionais */}
-        <div className="rounded-xl border border-white/5 overflow-hidden mb-4">
+        <div className="rounded-xl border border-white/5 overflow-hidden mb-4 xshort:mb-2">
           {/* Passo 1 */}
-          <div className="flex items-center gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               1
             </span>
@@ -45,7 +46,7 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
           </div>
 
           {/* Passo 2 */}
-          <div className="flex items-center gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               2
             </span>
@@ -57,7 +58,7 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
           </div>
 
           {/* Passo 3 */}
-          <div className="flex items-center gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               3
             </span>
@@ -69,7 +70,7 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
           </div>
 
           {/* Passo 4 */}
-          <div className="flex items-start gap-3 px-4 py-3.5 bg-surface border-b border-white/5">
+          <div className="flex items-start gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface border-b border-white/5">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold mt-0.5">
               4
             </span>
@@ -92,7 +93,7 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
           </div>
 
           {/* Passo 5 */}
-          <div className="flex items-center gap-3 px-4 py-3.5 bg-surface">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 xshort:py-2.5 bg-surface">
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               5
             </span>
@@ -105,13 +106,13 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
         </div>
 
         {/* Área de CTAs */}
-        <div className="mb-4">
+        <div className="mb-4 short:mb-3 xshort:mb-2">
           <a
             id="step3-kyc-cta"
             href={config.kyc_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary mb-3"
+            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary mb-3 xshort:mb-2"
           >
             <ExternalLink className="w-4 h-4" />
             Abrir verificação de identidade
@@ -132,58 +133,61 @@ export function Step3Verification({ onNext }: Step3VerificationProps) {
       </div>
 
       {/* Botão de avanço (agora abre o modal de confirmação primeiro) */}
-      <div className="pt-4 pb-2">
+      <div className="pt-4 short:pt-2 pb-2">
         <button
           id="step3-next-btn"
           onClick={() => setShowModal(true)}
-          className="w-full font-bold text-base py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-black glow-primary-strong active:scale-[0.98] cursor-pointer"
+          className="w-full font-bold text-base py-3.5 rounded-xl border border-primary flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-black glow-primary-strong active:scale-[0.98] cursor-pointer"
         >
           Próximo passo
         </button>
       </div>
 
       {/* Modal de Confirmação Amigável */}
-      <AnimatePresence>
-        {showModal && (
-          <div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-black/60 backdrop-blur-sm"
-            onClick={() => setShowModal(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              className="w-full max-w-sm bg-background rounded-2xl p-6 shadow-2xl relative"
-              onClick={(e) => e.stopPropagation()}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {showModal && (
+            <div
+              className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowModal(false)}
             >
-              <h3 className="text-lg font-bold text-white mb-2">Sua conta está com status de verificada?</h3>
-              <p className="text-sm text-text-muted mb-6 leading-relaxed">
-                Antes de continuar, dá uma conferida no status da sua conta.
-              </p>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                className="w-full max-w-sm bg-background rounded-2xl p-6 shadow-2xl relative"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <h3 className="text-lg font-bold text-white mb-2">Sua conta está com status de verificada?</h3>
+                <p className="text-sm text-text-muted mb-6 leading-relaxed">
+                  Antes de continuar, dá uma conferida no status da sua conta.
+                </p>
 
-              <div className="flex flex-col gap-3">
-                <button
-                  onClick={() => {
-                    setShowModal(false);
-                    onNext();
-                  }}
-                  className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary"
-                >
-                  Sim, está tudo certo
-                </button>
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={() => {
+                      setShowModal(false);
+                      onNext();
+                    }}
+                    className="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-hover text-black font-bold text-sm transition-all active:scale-[0.98] glow-primary"
+                  >
+                    Sim, está tudo certo
+                  </button>
 
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="w-full py-3.5 rounded-xl bg-surface border border-white/5 hover:border-white/10 hover:bg-white/5 text-text font-medium text-sm transition-all active:scale-[0.98]"
-                >
-                  Ainda está em análise
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="w-full py-3.5 rounded-xl bg-surface border border-white/5 hover:border-white/10 hover:bg-white/5 text-text font-medium text-sm transition-all active:scale-[0.98]"
+                  >
+                    Ainda está em análise
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </motion.div>
   );
 }

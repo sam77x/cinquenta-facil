@@ -123,10 +123,10 @@ export function Step1Preparation({ onNext }: Step1PreparationProps) {
         <button
           onClick={canProceed ? onNext : undefined}
           disabled={!canProceed}
-          className={`w-full font-bold text-base py-3.5 rounded-xl transition-all flex items-center justify-center gap-2
+          className={`w-full font-bold text-base py-3.5 rounded-xl border flex items-center justify-center gap-2
             ${canProceed
-              ? 'bg-primary hover:bg-primary-hover text-black glow-primary-strong active:scale-[0.98] cursor-pointer'
-              : 'bg-surface text-text-muted border border-white/5 cursor-not-allowed'
+              ? 'bg-primary border-primary hover:bg-primary-hover text-black glow-primary-strong active:scale-[0.98] cursor-pointer'
+              : 'bg-surface border-white/5 text-text-muted cursor-not-allowed'
             }`}
         >
           Tenho tudo em mãos

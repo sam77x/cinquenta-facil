@@ -11,7 +11,7 @@ export function ProgressBar({ currentStep, totalSteps, onBack }: ProgressBarProp
   const progress = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="w-full mb-4">
+    <div className="w-full mb-4 short:mb-3 xshort:mb-2">
       <div className="flex justify-between items-center mb-2 h-6">
         <div className="flex items-center gap-2">
           {onBack && currentStep > 1 && (
