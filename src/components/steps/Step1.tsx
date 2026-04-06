@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Smartphone, ShieldCheck, Landmark, IdCard, CheckCircle2, Download } from 'lucide-react';
+import { Mail, Smartphone, ShieldCheck, Landmark, IdCard, CheckCircle2, Download, Clock } from 'lucide-react';
 
 function getStoreUrl(ios: string, android: string): string {
   const ua = navigator.userAgent;
@@ -120,6 +120,14 @@ export function Step1Preparation({ onNext }: Step1PreparationProps) {
       </div>
 
       <div className="pt-4 pb-2">
+        <div className="flex items-center justify-center mb-4">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-primary/10">
+            <Clock className="w-3.5 h-3.5 text-primary" />
+            <span className="text-[11px] font-medium text-primary/90">
+              É rápido! Leva só <strong className="font-bold text-primary">5 a 10 minutos</strong>
+            </span>
+          </div>
+        </div>
         <button
           onClick={canProceed ? onNext : undefined}
           disabled={!canProceed}
