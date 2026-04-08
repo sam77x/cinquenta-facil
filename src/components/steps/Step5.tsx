@@ -33,10 +33,10 @@ export function Step5Final({ onNext }: Step5FinalProps) {
         </div>
 
         {/* Passos instrucionais */}
-        <div className="rounded-xl border border-white/5 overflow-hidden mb-4 xshort:mb-2">
+        <div className="rounded-xl border border-white/5 overflow-hidden mb-4 short:mb-3">
           {/* Passo 1 */}
-          <div className="flex items-center gap-3 short:gap-2 px-4 py-3.5 short:py-2 xshort:py-2.5 bg-surface border-b border-white/5">
-            <span className="flex-shrink-0 w-6 h-6 short:w-5 short:h-5 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs short:text-[10px] font-bold">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 bg-surface border-b border-white/5">
+            <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               1
             </span>
             <div className="flex-1 min-w-0">
@@ -47,8 +47,8 @@ export function Step5Final({ onNext }: Step5FinalProps) {
           </div>
 
           {/* Passo 2 */}
-          <div className="flex items-center gap-3 short:gap-2 px-4 py-3.5 short:py-2 xshort:py-2.5 bg-surface border-b border-white/5">
-            <span className="flex-shrink-0 w-6 h-6 short:w-5 short:h-5 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs short:text-[10px] font-bold">
+          <div className="flex items-center gap-3 px-4 py-3.5 short:py-2.5 bg-surface border-b border-white/5">
+            <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold">
               2
             </span>
             <div className="flex-1 min-w-0">
@@ -59,30 +59,30 @@ export function Step5Final({ onNext }: Step5FinalProps) {
           </div>
 
           {/* Passo 3 */}
-          <div className="flex items-start gap-3 short:gap-2 px-4 py-3.5 short:py-2 xshort:py-2.5 bg-surface border-b border-white/5">
-            <span className="flex-shrink-0 w-6 h-6 short:w-5 short:h-5 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs short:text-[10px] font-bold mt-0.5">
+          <div className="flex items-start gap-3 px-4 py-3.5 short:py-2.5 bg-surface border-b border-white/5">
+            <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold mt-0.5">
               3
             </span>
             <div className="flex-1 min-w-0">
               <p className="text-sm short:text-[13px] font-medium text-text leading-snug">
                 No total, arraste a barra para o <span className="text-primary font-semibold">máximo (100%)</span>
               </p>
-              <p className="text-xs short:text-[11px] text-text-muted mt-1 short:mt-0 leading-relaxed">
+              <p className="text-xs text-text-muted mt-1 leading-relaxed">
                 Após arrastar tudo preenchendo o valor, <span className="text-primary font-semibold">conclua a compra</span> e aguarde entre 15 e 30 segundos.
               </p>
             </div>
           </div>
 
           {/* Passo 4 */}
-          <div className="flex items-start gap-3 short:gap-2 px-4 py-3.5 short:py-2 xshort:py-2.5 bg-surface">
-            <span className="flex-shrink-0 w-6 h-6 short:w-5 short:h-5 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs short:text-[10px] font-bold mt-0.5">
+          <div className="flex items-start gap-3 px-4 py-3.5 short:py-2.5 bg-surface">
+            <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-primary/15 text-primary text-xs font-bold mt-0.5">
               4
             </span>
             <div className="flex-1 min-w-0">
               <p className="text-sm short:text-[13px] font-medium text-text leading-snug">
                 Aperte em <span className="text-red-500 font-semibold">Vender</span> e arraste pro máximo
               </p>
-              <p className="text-xs short:text-[11px] text-text-muted mt-1 short:mt-0 leading-relaxed">
+              <p className="text-xs text-text-muted mt-1 leading-relaxed">
                 Repita o processo de arrastar a barra para os 100% novamente para vender tudo.
               </p>
             </div>
