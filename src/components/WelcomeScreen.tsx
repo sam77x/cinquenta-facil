@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ShieldCheck, Zap, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Zap, CheckCircle2 } from 'lucide-react';
 
 interface WelcomeScreenProps {
   onStart: () => void;

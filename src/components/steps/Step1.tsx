@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Smartphone, ShieldCheck, Landmark, IdCard, CheckCircle2, Download, Clock } from 'lucide-react';
+import { Mail, Smartphone, ShieldCheck, Landmark, IdCard, CheckCircle2, Download, Clock, Globe } from 'lucide-react';
 
 function getStoreUrl(ios: string, android: string): string {
   const ua = navigator.userAgent;
@@ -31,13 +31,21 @@ export function Step1Preparation({ onNext }: Step1PreparationProps) {
     >
       <div className="flex-1">
         {/* Cabeçalho minimalista */}
-        <div className="mb-5">
+        <div className="mb-4">
           <h1 className="text-xl font-bold tracking-tight mb-1">
             Antes de começar
           </h1>
           <p className="text-text-muted text-sm leading-relaxed">
             Separe esses itens para garantir seus{' '}
             <strong className="text-primary font-bold">R$ 50</strong> sem problemas.
+          </p>
+        </div>
+
+        {/* Aviso de uso no navegador */}
+        <div className="mb-4 flex items-start gap-2.5 px-3 py-2.5 rounded-lg bg-surface border border-white/5">
+          <Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+          <p className="text-[11px] text-text-muted leading-tight">
+            <strong className="text-primary/70 font-semibold">Guia otimizado para navegador:</strong> O aplicativo pode apresentar telas e passos diferentes.
           </p>
         </div>
 
@@ -119,26 +127,29 @@ export function Step1Preparation({ onNext }: Step1PreparationProps) {
         </div>
       </div>
 
-      <div className="pt-4 pb-2">
-        <div className="flex items-center justify-center mb-4">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-primary/10">
-            <Clock className="w-3.5 h-3.5 text-primary" />
-            <span className="text-[11px] font-medium text-primary/90">
-              É rápido! Leva de <strong className="font-bold text-primary">5 a 10 minutos</strong>
-            </span>
+      <div className="pt-2 pb-6 mt-auto">
+        <div className="relative">
+          {/* Badge acoplado na borda superior */}
+          <div className="absolute -top-3 left-0 w-full flex justify-center pointer-events-none z-10">
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-surface border border-white/10 shadow-xl">
+              <Clock className="w-3 h-3 text-primary" />
+              <span className="text-[10px] font-medium text-text-secondary tracking-wide">
+                É rápido! Leva de <strong className="font-bold text-primary">5 a 10 min</strong>
+              </span>
+            </div>
           </div>
+          <button
+            onClick={canProceed ? onNext : undefined}
+            disabled={!canProceed}
+            className={`w-full font-bold text-base pt-4 pb-3.5 rounded-xl border flex items-center justify-center gap-2
+              ${canProceed
+                ? 'bg-primary border-primary hover:bg-primary-hover text-black glow-primary-strong active:scale-[0.98] cursor-pointer'
+                : 'bg-surface-highlight border-white/5 text-text-muted cursor-not-allowed'
+              }`}
+          >
+            Tenho tudo em mãos
+          </button>
         </div>
-        <button
-          onClick={canProceed ? onNext : undefined}
-          disabled={!canProceed}
-          className={`w-full font-bold text-base py-3.5 rounded-xl border flex items-center justify-center gap-2
-            ${canProceed
-              ? 'bg-primary border-primary hover:bg-primary-hover text-black glow-primary-strong active:scale-[0.98] cursor-pointer'
-              : 'bg-surface border-white/5 text-text-muted cursor-not-allowed'
-            }`}
-        >
-          Tenho tudo em mãos
-        </button>
       </div>
     </motion.div>
   );

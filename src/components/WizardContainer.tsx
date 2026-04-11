@@ -36,6 +36,17 @@ export function WizardContainer() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []); // Executa apenas na montagem
 
+  // Aplica o bloqueio de scroll apenas no Wizard, permitindo que a área /admin continue tendo scroll
+  useEffect(() => {
+    document.documentElement.classList.add('lock-scroll');
+    document.body.classList.add('lock-scroll');
+    
+    return () => {
+      document.documentElement.classList.remove('lock-scroll');
+      document.body.classList.remove('lock-scroll');
+    };
+  }, []);
+
   useEffect(() => {
     if (currentStep === 0) {
       document.title = 'Cinquenta Fácil | Bem-vindo';

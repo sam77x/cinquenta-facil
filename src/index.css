@@ -5,12 +5,19 @@
 @tailwind utilities;
 
 @layer base {
+  html.lock-scroll, body.lock-scroll {
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   body {
     @apply bg-background text-text font-sans antialiased;
     /* Add subtle grid background */
     background-image: radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 24px 24px;
-    min-height: 100vh;
   }
 }
 
